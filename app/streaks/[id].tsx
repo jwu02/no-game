@@ -26,7 +26,10 @@ export default function StreakDetails() {
   return (
     <>
       {/* Dynamically set the page title */}
-      <Stack.Screen options={{ title: `Streak #${streakNumber}` }} />
+      <Stack.Screen options={{
+        title: `Streak #${streakNumber}`,
+        headerBackTitle: 'History',
+      }} />
       
       <ScrollView
         className="p-5"
