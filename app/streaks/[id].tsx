@@ -7,6 +7,8 @@ import { ObjectId } from 'bson';
 import { Realm } from '@realm/react'
 import { Streak } from '@/db/models/Streak';
 import FlatListDivider from '@/components/FlatListDivider';
+import { FontAwesome, FontAwesome6 } from '@expo/vector-icons';
+import { differenceInDays } from 'date-fns';
 
 export default function StreakDetails() {
   const { id: streakId, streakNumber, durationString } = useLocalSearchParams();
@@ -42,7 +44,7 @@ export default function StreakDetails() {
             {summaryData.map((data, index) => (
               <View key={index} className="flex-row justify-between">
                 <Text>{data.label}</Text>
-                <Text>{data.value}</Text>
+                <Text className="font-medium">{data.value}</Text>
               </View>
             ))}
           </View>
@@ -69,7 +71,13 @@ export default function StreakDetails() {
                 keyExtractor={(item) => item._id}
                 renderItem={({ item }) => (
                   <View className="flex-column justify-between gap-1">
-                    <Text>{item.createdAt?.toLocaleDateString()}</Text>
+                    <View className="flex-row items-center gap-2">
+                      <FontAwesome6 name="clock" size={14} color="gray" />
+                      <Text className="text-sm text-gray-500">
+                        Day {differenceInDays(item.createdAt, streak.startDate)+1} | {item.createdAt.toLocaleString()}
+                      </Text>
+                    </View>
+
                     <Text>{item.notes}</Text>
                   </View>
                 )}
@@ -79,7 +87,6 @@ export default function StreakDetails() {
               : 
               <Text className="m-auto font-semibold text-gray-500">Nothing recorded.</Text>
             }
-            
           </View>
         </View>
       </ScrollView>

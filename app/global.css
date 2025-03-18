@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .subtitle {
-  @apply text-gray-500 ml-5 font-semibold uppercase;
+  @apply text-gray-500 ml-5 font-medium uppercase;
 }
 .subsection {
   @apply bg-white rounded-2xl p-5 gap-3;

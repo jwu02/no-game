@@ -11,17 +11,26 @@ export function getDurationString(startDate: Date, endDate: Date) {
   const diffHours = differenceInHours(endDate, startDate);
   const diffDays = differenceInDays(endDate, startDate);
 
+  let unit;
+  let value;
+
   if (diffSeconds < 60) {
-    return `${diffSeconds} seconds`;
+    unit = 'second';
+    value = diffSeconds;
+  } else if (diffMinutes < 60) {
+    unit = 'minute';
+    value = diffMinutes;
+  } else if (diffHours < 24) {
+    unit = 'hour';
+    value = diffHours;
+  } else {
+    unit = 'day';
+    value = diffDays;
   }
 
-  if (diffMinutes < 60) {
-    return `${diffMinutes} minutes`;
+  if (value !== 1) {
+    unit += 's';
   }
 
-  if (diffHours < 24) {
-    return `${diffHours} hours`;
-  }
-
-  return `${diffDays} days`;
+  return `${value} ${unit}`;
 }

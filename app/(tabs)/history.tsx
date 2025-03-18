@@ -2,7 +2,7 @@ import FlatListDivider from '@/components/FlatListDivider';
 import { Streak } from '@/db/models/Streak';
 import { streaksData } from '@/db/seedData';
 import { getDurationString } from '@/utils/utils';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome6 } from '@expo/vector-icons';
 import { useQuery, useRealm } from '@realm/react';
 import { Link, useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
@@ -76,31 +76,35 @@ export default function Tab() {
             const durationString = getDurationString(item.startDate, item.endDate || currentDate);
 
             return (
-              // <Link href={`/streaks/${item._id.toHexString()}`} asChild>
-                <TouchableOpacity
-                  onPress={() => router.push({
-                    pathname: "/streaks/[id]",
-                    params: {
-                      id: item._id.toHexString(),
-                      streakNumber: streakNumber,
-                      durationString: durationString,
-                    }
-                  })}
-                >
-                  <View className="flex-row gap-5 items-center">
-                    <View className="gap-2 flex-1">
-                      <Text>Streak #{streakNumber}</Text>
+              <TouchableOpacity
+                onPress={() => router.push({
+                  pathname: "/streaks/[id]",
+                  params: {
+                    id: item._id.toHexString(),
+                    streakNumber: streakNumber,
+                    durationString: durationString,
+                  }
+                })}
+              >
+                <View className="flex-row gap-5 items-center">
+                  <View className="gap-2 flex-1">
+                    <Text>Streak #{streakNumber}</Text>
+                    <View className="flex-row gap-2 items-center">
                       <Text className="text-gray-500">
-                        {item.startDate.toLocaleDateString()} - {item.endDate?.toLocaleDateString() || "ongoing"}
+                        {item.startDate.toLocaleDateString()}
+                      </Text>
+                      <FontAwesome6 name="arrow-right-long" color="grey" />
+                      <Text className="text-gray-500">
+                        {item.endDate?.toLocaleDateString() || "ongoing"}
                       </Text>
                     </View>
-
-                    <Text className="text-gray-500">{durationString}</Text>
-
-                    <FontAwesome name="chevron-right" color="grey" />
                   </View>
-                </TouchableOpacity>
-              // </Link>
+
+                  <Text className="text-gray-500">{durationString}</Text>
+
+                  <FontAwesome name="angle-right" size={18} color="grey" />
+                </View>
+              </TouchableOpacity>
             );
           }}
           scrollEnabled={false}
