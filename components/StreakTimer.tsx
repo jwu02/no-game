@@ -1,26 +1,14 @@
 import { View, Text } from 'react-native'
-import React, { useEffect } from 'react'
-import { useStopwatch } from 'react-timer-hook';
+import React from 'react'
 
-const StreakTimer = ({ offsetTimeStamp }: { offsetTimeStamp: Date }) => {
-  const {
-    totalSeconds,
-    milliseconds,
-    seconds,
-    minutes,
-    hours,
-    days,
-    isRunning,
-    start,
-    pause,
-    reset,
-  } = useStopwatch({ autoStart: true, interval: 1000, offsetTimestamp: offsetTimeStamp });
+interface StreakTimerProps {
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
+}
 
-  useEffect(() => {
-    reset()
-  }, [offsetTimeStamp])
-
-  // Create an array of time values with labels
+const StreakTimer = ({ days, hours, minutes, seconds }: StreakTimerProps) => {
   const timerValues = [
     { label: 'hours', value: hours },
     { label: 'minutes', value: minutes },
@@ -31,7 +19,7 @@ const StreakTimer = ({ offsetTimeStamp }: { offsetTimeStamp: Date }) => {
     <View className="gap-3">
       <View className="subsection justify-center items-center !gap-0 w-full">
         <Text className="text-2xl font-semibold">{days}</Text>
-        <Text className="text-gray-500">day</Text>
+        <Text className="text-gray-500">days</Text>
       </View>
 
       <View className="flex-row gap-3">
