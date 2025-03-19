@@ -17,3 +17,9 @@ npx expo run:ios
 - expo router >>> expo navigation
 
 - REMEMBER to add component folder to tailwind configs for styles
+
+
+- `git checkout -b feature/home_page`
+    - `git checkout` switch between branches
+    - `-b` flag tells git to create a new branch if it doesn't exist already, and then switch to it
+
