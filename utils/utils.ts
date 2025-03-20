@@ -35,10 +35,6 @@ export function getDurationString(startDate: Date, endDate: Date) {
   return `${value} ${unit}`;
 }
 
-export function fractionalDaysToHours(days: number) {
-  return days * 24;
-}
-
 // Streak goal durations in minutes, hours, days
 const streakGoalMinuteDurations = [1, 5, 10, 30]
 const streakGoalHourDurations = [1, 2, 4, 8, 12, 16]

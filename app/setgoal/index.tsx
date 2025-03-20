@@ -5,7 +5,6 @@ import { streakGoalDurationsMap } from '@/utils/utils'
 import FlatListDivider from '@/components/FlatListDivider'
 import { AntDesign } from '@expo/vector-icons'
 import { add } from 'date-fns'
-import { fractionalDaysToHours } from '@/utils/utils'
 import { useStreakGoal } from '@/contexts/StreakGoalContext'
 
 type Item = { item: StreakGoalDuration }
