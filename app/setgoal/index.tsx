@@ -37,10 +37,7 @@ const SetGoal = () => {
               return (
                 <TouchableOpacity className="flex-row justify-between" 
                   disabled={disableGoal}
-                  onPress={() => {
-                    console.log('goalEndDate', goalEndDate)
-                    setStreakGoal(item)
-                  }}
+                  onPress={() => setStreakGoal(item)}
                 >
                   <Text className={disableGoal ? 'text-gray-500 line-through' : ''}>{item.label}</Text>
                   {disableGoal ? 

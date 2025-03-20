@@ -26,10 +26,12 @@ const StreakProgress = ({ lastStreakStartDate }: StreakGoalProps) => {
   // const remainingTimeDuration = intervalToDuration({ start: now, end: streakGoal });
   const remainingTime = streakGoalDate.getTime() - now.getTime();
 
-  if (remainingTime < 0) {
-    const nextStreakGoal = streakGoalDurationsMap[streakGoalDurationsMap.findIndex((goal) => goal.value === streakGoal.value) + 1];
-    setStreakGoal(nextStreakGoal);
-  }
+  useEffect(() => {
+    if (remainingTime < 0) {
+      const nextStreakGoal = streakGoalDurationsMap[streakGoalDurationsMap.findIndex((goal) => goal.value === streakGoal.value) + 1];
+      setStreakGoal(nextStreakGoal);
+    }
+  }, [remainingTime, streakGoal]);
 
   const remainingTimeDuration = {
     days: Math.floor(remainingTime / (1000 * 60 * 60 * 24)),
