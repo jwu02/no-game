@@ -17,7 +17,7 @@ const StreakTimer = ({ days, hours, minutes, seconds }: StreakTimerProps) => {
 
   return (
     <View className="gap-3">
-      <View className="subsection justify-center items-center !gap-0 w-full">
+      <View className="subsection items-end !gap-0">
         <Text className="text-2xl font-semibold">{days}</Text>
         <Text className="text-gray-500">days</Text>
       </View>

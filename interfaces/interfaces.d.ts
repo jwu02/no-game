@@ -11,3 +11,8 @@ interface DailyReport {
   notes: string;
   createdAt: Date;
 }
+
+interface StreakGoalDuration {
+  value: { minutes?: number, hours?: number, days?: number };
+  label: string;
+}

@@ -1,6 +1,10 @@
 
 # Todos
 - [] retrieve object with id from the realm database instead of query? doesn it even matter?
+- [] how does intervalToDuraiton work, days not displayed correctly for >30
+- [x] automatic goal setting
+    - define the first goal when app first launched, to get rid of NaN label
+    - automatically move on to next goal after completion
 
 
 ## Notes
@@ -22,4 +26,3 @@ npx expo run:ios
 - `git checkout -b feature/home_page`
     - `git checkout` switch between branches
     - `-b` flag tells git to create a new branch if it doesn't exist already, and then switch to it
-
