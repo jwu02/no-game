@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { streakGoalDurationsMap } from "@/utils/utils";
+import { StreakGoalDuration } from "@/interfaces/interfaces";
 
 type StreakGoalContextType = {
   streakGoal: StreakGoalDuration;

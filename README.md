@@ -1,50 +1,31 @@
-# Welcome to your Expo app 👋
+# No Game
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Setup
+- `npm install` install dependencies
+- `npx expo start` start the app
+- examine terminal output, press a / i / w to display app locally
 
-## Get started
+## Todos
+- [x] daily report context
+- [] retrieve object with id from the realm database instead of query? doesn it even matter?
+- [] how does intervalToDuraiton work, days not displayed correctly for >30
+- [x] automatic goal setting
+    - define the first goal when app first launched, to get rid of NaN label
+    - automatically move on to next goal after completion
 
-1. Install dependencies
+## Personal Notes
+- `create-expo-app` create Expo project
+- `npm run reset-project` to remove starter code
+- `.d.ts` declaration files that only contain type information
+- Realm for local nosql database
+- make sure `ScrollView` imported from react native and not something else
+- expo router >>> expo navigation
+- REMEMBER to add `components` (or any other) folder to tailwind configs for styles
 
-   ```bash
-   npm install
-   ```
+- `git checkout -b feature/home_page`
+    - `git checkout` switch between branches
+    - `-b` flag tells git to create a new branch if it doesn't exist already, and then switch to it
 
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- use zustand for
+    - convenient, scalable, global state management
+    - eliminating context boiler plate code

@@ -6,6 +6,7 @@ import FlatListDivider from '@/components/FlatListDivider'
 import { AntDesign } from '@expo/vector-icons'
 import { add } from 'date-fns'
 import { useStreakGoal } from '@/contexts/StreakGoalContext'
+import { StreakGoalDuration } from '@/interfaces/interfaces'
 
 type Item = { item: StreakGoalDuration }
 
