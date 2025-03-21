@@ -6,7 +6,7 @@ import { useRouter } from 'expo-router';
 import { Streak } from '@/db/models/Streak';
 import { getLastStreak } from '@/utils/utils';
 import { useDailyReportStore } from '@/store';
-
+import Toast from 'react-native-toast-message';
 const DailyReportModal = () => {
   const realm = useRealm();
   const streaks = useQuery(Streak);
@@ -38,6 +38,11 @@ const DailyReportModal = () => {
       streak?.dailyReports?.push(newDailyReportEntry);
 
       setDailyReport(newDailyReportEntry);
+    });
+
+    Toast.show({
+      text1: 'Daily report entry created',
+      type: 'success',
     });
 
     router.back();
