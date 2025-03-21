@@ -1,9 +1,11 @@
+import { Streak } from "@/db/models/Streak";
 import { 
   differenceInSeconds, 
   differenceInMinutes, 
   differenceInHours, 
   differenceInDays
 } from "date-fns";
+import { Results } from "realm";
 
 export function getDurationString(startDate: Date, endDate: Date) {
   const diffSeconds = differenceInSeconds(endDate, startDate);
@@ -58,3 +60,5 @@ export const streakGoalDurationsMap = [
   ...streakGoalDayDurations.map(duration => {
     return { label: `${duration} days`, value: { days: duration }};
 })];
+
+export const getLastStreak = (streaks: Results<Streak>) => streaks.sorted('startDate', true)[0];

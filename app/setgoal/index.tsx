@@ -41,8 +41,8 @@ const SetGoal = () => {
                 >
                   <Text className={disableGoal ? 'text-gray-500 line-through' : ''}>{item.label}</Text>
                   {disableGoal ? 
-                    <AntDesign name="checkcircle" size={16} color="black" /> : 
-                    <AntDesign name="checkcircleo" size={16} color="black" />
+                    <AntDesign name="checkcircle" size={16} color="green" /> : 
+                    <AntDesign name="checkcircleo" size={16} />
                   }
                 </TouchableOpacity>
             )}}

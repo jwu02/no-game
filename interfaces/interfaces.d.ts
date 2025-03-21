@@ -1,9 +1,11 @@
+import { List } from 'realm';
+
 interface Streak {
-  _id: string
+  _id: string;
   startDate: Date;
   endDate?: Date;
   relapseNotes?: string;
-  dailyReports?: DailyReport[];
+  dailyReports?: List<DailyReport>;
 }
 
 interface DailyReport {

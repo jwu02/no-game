@@ -1,4 +1,5 @@
 import { Realm } from '@realm/react'
+import { DailyReport } from './DailyReport';
 
 export class Streak extends Realm.Object {
   _id!: Realm.BSON.ObjectId;
