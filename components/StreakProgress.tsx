@@ -4,7 +4,7 @@ import { add, intervalToDuration } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { useStreakGoal } from '@/contexts/StreakGoalContext';
+import { useStreakGoalStore } from '@/store';
 import { streakGoalDurationsMap } from '@/utils/utils';
 
 interface StreakGoalProps {
@@ -12,7 +12,7 @@ interface StreakGoalProps {
 }
 
 const StreakProgress = ({ lastStreakStartDate }: StreakGoalProps) => {
-  const { streakGoal, setStreakGoal } = useStreakGoal();
+  const { streakGoal, setStreakGoal } = useStreakGoalStore();
 
   const streakGoalDate = add(lastStreakStartDate, streakGoal.value);
 

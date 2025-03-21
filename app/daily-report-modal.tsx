@@ -5,12 +5,12 @@ import { DailyReport } from '@/db/models/DailyReport';
 import { useRouter } from 'expo-router';
 import { Streak } from '@/db/models/Streak';
 import { getLastStreak } from '@/utils/utils';
-import { useDailyReport } from '@/contexts/DailyReportContext';
+import { useDailyReportStore } from '@/store';
 
 const DailyReportModal = () => {
   const realm = useRealm();
   const streaks = useQuery(Streak);
-  const { dailyReport, setDailyReport } = useDailyReport();
+  const { setDailyReport } = useDailyReportStore();
 
   const router = useRouter();
   

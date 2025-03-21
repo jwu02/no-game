@@ -1,13 +1,13 @@
 import { useRouter } from 'expo-router';
-import { useDailyReport } from '@/contexts/DailyReportContext';
 import { useEffect, useState } from 'react';
 import { startOfToday, isWithinInterval, startOfTomorrow } from 'date-fns';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Feather, AntDesign } from '@expo/vector-icons';
+import { useDailyReportStore } from '@/store';
 
 const Shortcuts = () => {
   const router = useRouter();
-  const { dailyReport, setDailyReport } = useDailyReport();
+  const { dailyReport, setDailyReport } = useDailyReportStore();
   const [dailyReportCompleted, setDailyReportCompleted] = useState(false);
 
   const isDateInRange = (date: Date) => {
