@@ -1,3 +1,6 @@
+import { BSON } from "realm";
+import { DailyReport } from "./models/DailyReport";
+import { Streak } from "./models/Streak";
 
 export const streaksData = [
   {
@@ -33,3 +36,31 @@ export const streaksData = [
     dailyReports: []
   }
 ]
+
+export const seedData = (realm: Realm) => {
+  // Hard coding data seeding
+  realm.write(() => {
+    // Clear database on startup for testing purposes
+    realm.deleteAll();
+
+    streaksData.forEach((streak) => {
+      const dailyReportEntries = streak.dailyReports.map((report) => {
+        return realm.create(DailyReport, {
+          _id: new BSON.ObjectId(),
+          notes: report.notes,
+          createdAt: report.createdAt,
+        });
+      });
+      
+      realm.create("Streak", {
+        _id: new BSON.ObjectId(),
+        startDate: streak.startDate,
+        endDate: streak.endDate,
+        relapseNotes: streak.relapseNotes,
+        dailyReports: dailyReportEntries,
+      });
+    });
+
+    realm.create("Streak", Streak.generate());
+  });
+}

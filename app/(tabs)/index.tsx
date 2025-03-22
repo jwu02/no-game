@@ -1,47 +1,29 @@
 import StreakTimer from '@/components/StreakTimer';
 import { Streak } from '@/db/models/Streak';
-import { streaksData } from '@/db/seedData';
+import { seedData } from '@/db/seedData';
 import { useQuery, useRealm } from '@realm/react';
 import { useEffect, useState } from 'react';
 import { ScrollView, SafeAreaView } from 'react-native';
-import { BSON } from 'realm';
 import StreakProgress from '@/components/StreakProgress';
-import { DailyReport } from '@/db/models/DailyReport';
 import Shortcuts from '@/components/Shorcuts';
 import { useCustomStopwatch } from '@/hooks/useCustomStopwatch';
 
 export default function Tab() {
   const realm = useRealm();
-  const streaks = useQuery(Streak);
+  const streaks = useQuery({
+    type: Streak,
+    query: (collection) => collection.sorted('startDate', true)
+  }, []);
   
   const [lastStreak, setLastStreak] = useState<Streak | null>(null);
 
   useEffect(() => {
-    // Clear database on startup for testing purposes
-    realm.write(() => {
-      realm.deleteAll(); 
-    });
+    // Seed data
+    seedData(realm);
     
-    // Hard coding data seeding
-    realm.write(() => {
-      streaksData.forEach((streak) => {
-        const dailyReportEntries = streak.dailyReports.map((report) => {
-          return realm.create(DailyReport, {
-            _id: new BSON.ObjectId(),
-            notes: report.notes,
-            createdAt: report.createdAt,
-          });
-        });
-        
-        realm.create("Streak", {
-          _id: new BSON.ObjectId(),
-          startDate: streak.startDate,
-          endDate: streak.endDate,
-          relapseNotes: streak.relapseNotes,
-          dailyReports: dailyReportEntries,
-        });
-      });
-    });
+    // realm.write(() => {
+    //   realm.create("Streak", Streak.generate());
+    // });
 
     // Update lastStreak after seeding is complete
     setLastStreak(streaks.length > 0 ? streaks[0] : null);
