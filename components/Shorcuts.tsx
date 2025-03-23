@@ -28,26 +28,33 @@ const Shortcuts = () => {
       setDailyReportCompleted(false);
     }
   }, [dailyReport]);
+  
+  const commonShortcutLabelStyles = "font-semibold text-lg";
 
   return (
     <View className="subsection-container">
       <Text className="subtitle">Shortcuts</Text>
       <View className="flex-row gap-3 h-28">
-        <TouchableOpacity className="subsection flex-1">
-          <View>
-            <Text>Relapse</Text>
+        <TouchableOpacity className="subsection flex-1" 
+          onPress={() => router.push('/relapse-modal')}>
+          <View className="flex-row items-center gap-2">
+            <AntDesign name="back" size={18} />
+            <Text className={commonShortcutLabelStyles}>Relapse</Text>
           </View>
+          <Text className="text-gray-500">
+            I've relapsed.
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity className="subsection flex-1" disabled={dailyReportCompleted} 
           onPress={() => router.push('/daily-report-modal')}>
           <View className="flex-row items-center gap-2">
             <Feather name="edit" size={18} />
-            <Text className="font-semibold">Daily Report</Text>
+            <Text className={commonShortcutLabelStyles}>Daily Report</Text>
           </View>
           {dailyReportCompleted && (
             <View className="flex-row items-center gap-2">
-              <Text className="text-sm text-gray-500">Completed</Text>
+              <Text className="text-gray-500">Completed</Text>
               <AntDesign name="checkcircle" size={18} color="green" />
             </View>
           )}

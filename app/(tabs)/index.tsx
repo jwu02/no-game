@@ -7,6 +7,7 @@ import { ScrollView, SafeAreaView } from 'react-native';
 import StreakProgress from '@/components/StreakProgress';
 import Shortcuts from '@/components/Shorcuts';
 import { useCustomStopwatch } from '@/hooks/useCustomStopwatch';
+import { useLastStreakStore, useStreakGoalStore } from '@/store';
 
 export default function Tab() {
   const realm = useRealm();
@@ -15,7 +16,8 @@ export default function Tab() {
     query: (collection) => collection.sorted('startDate', true)
   }, []);
   
-  const [lastStreak, setLastStreak] = useState<Streak | null>(null);
+  const { lastStreak, setLastStreak } = useLastStreakStore();
+  const { resetStreakGoal } = useStreakGoalStore();
 
   useEffect(() => {
     // Seed data
@@ -39,6 +41,12 @@ export default function Tab() {
     offsetTimestamp: lastStreak?.startDate ?? new Date(),
     autoStart: !!lastStreak
   });
+
+  // Last streak change side effects (user relapsed)
+  useEffect(() => {
+    reset(); // Reset the stopwatch
+    resetStreakGoal(); // Reset the streak goal
+  }, [lastStreak]);
 
   return (
     <SafeAreaView>

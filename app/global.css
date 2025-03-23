@@ -6,7 +6,7 @@
   @apply text-gray-500 mx-5 font-medium uppercase;
 }
 .subsection {
-  @apply bg-white rounded-2xl p-5 gap-3;
+  @apply bg-white rounded-2xl px-5 py-4 gap-3;
 }
 
 .subsection-container {

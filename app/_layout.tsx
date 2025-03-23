@@ -9,6 +9,13 @@ export default function Layout() {
     <RealmProvider schema={schemas}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="relapse-modal"
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
         <Stack.Screen 
           name="daily-report-modal" 
           options={{

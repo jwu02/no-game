@@ -7,6 +7,8 @@ import { Streak } from '@/db/models/Streak';
 import { getLastStreak } from '@/utils/utils';
 import { useDailyReportStore } from '@/store';
 import Toast from 'react-native-toast-message';
+import SubsectionContainer from '@/components/SubsectionContainer';
+
 const DailyReportModal = () => {
   const realm = useRealm();
   const streaks = useQuery(Streak);
@@ -17,9 +19,6 @@ const DailyReportModal = () => {
   const [text, onChangeText] = React.useState('');
 
   const pointsToConsider = [
-    // "What happened?",
-    // "What did you learn?",
-    // "What can you do better next time?",
     "Did you encounter any temptations?",
     "Where and how did you encounter them?",
     "How did you handle them?",
@@ -51,20 +50,16 @@ const DailyReportModal = () => {
   return (
     <ScrollView className="rounded-lg">
       <View className="p-5 gap-5">
-        <View className="subsection-container">
-          <Text className="subtitle">Points to Consider</Text>
-          <View className="subsection">
-            {pointsToConsider.map((point, index) => (
-              <Text key={index}>{`\u2022 ${point}`}</Text>
-            ))}
-          </View>
-        </View>
+        <SubsectionContainer title="Reflection Points">
+          {pointsToConsider.map((point, index) => (
+            <Text key={index}>{`\u2022 ${point}`}</Text>
+          ))}
+        </SubsectionContainer>
         
-        <View className="subsection-container">
-          <Text className="subtitle">Daily Report</Text>
+        <SubsectionContainer title="Daily Report">
           <View className="relative">
             <TextInput
-              className="subsection w-full h-96"
+              className="w-full min-h-96"
               editable
               multiline
               maxLength={MAX_REPORT_LENGTH}
@@ -72,11 +67,11 @@ const DailyReportModal = () => {
               value={text}
               scrollEnabled={false}
             />
-            <Text className="text-right text-sm text-gray-500 absolute bottom-3 right-4">
+            <Text className="text-right text-sm text-gray-500 absolute bottom-0 right-0">
               {MAX_REPORT_LENGTH - text.length}
             </Text>
           </View>
-        </View>
+        </SubsectionContainer>
         
         <TouchableOpacity className="bg-green-600 mx-auto py-3 px-5 rounded-lg"
           onPress={handleSaveDailyReport}>
